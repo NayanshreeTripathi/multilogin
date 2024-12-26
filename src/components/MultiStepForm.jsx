@@ -45,11 +45,11 @@ const MultiStepForm = ({ setFormData }) => {
 
   const handleSubmit = async () => {
     try {
-      // Add form data to Firestore
+      
       const docRef = await addDoc(collection(db, "multiLoginUsers"), formData);
       console.log("Document written with ID: ", docRef.id);
 
-      // Redirect to the display data page after successful submission
+      
       setFormData(formData);
       navigate("/display");
     } catch (error) {

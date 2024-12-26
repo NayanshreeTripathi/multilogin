@@ -5,7 +5,7 @@ const DisplayData = ({ formData, handleLogout }) => {
   const navigate = useNavigate();
 
   const handleLogoutClick = () => {
-    // Handle logout (e.g., clear session, reset state)
+    
     handleLogout();
     navigate("/"); // Redirect to login page after logout
   };

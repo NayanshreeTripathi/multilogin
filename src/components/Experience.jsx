@@ -15,7 +15,7 @@ const Experience = ({ data, updateData }) => {
   return (
     <div
       style={{
-        backgroundColor: "#f0f8ff", // Light blue background
+        backgroundColor: "#f0f8ff", 
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -97,7 +97,7 @@ const Experience = ({ data, updateData }) => {
             key={index}
             style={{
               padding: "10px",
-              backgroundColor: "#e6f7ff", // Light blue background for list items
+              backgroundColor: "#e6f7ff", 
               marginBottom: "5px",
               borderRadius: "4px",
               color: "#333",

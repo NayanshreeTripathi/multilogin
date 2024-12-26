@@ -24,8 +24,8 @@ const Address = ({ data, updateData }) => {
           borderRadius: "4px",
           fontSize: "16px",
           outline: "none",
-          minHeight: "100px", // Adds height for the text area
-          resize: "vertical", // Allows vertical resizing of the text area
+          minHeight: "100px", 
+          resize: "vertical", 
         }}
       />
     </div>
