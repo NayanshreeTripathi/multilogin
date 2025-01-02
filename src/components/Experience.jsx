@@ -12,10 +12,14 @@ const Experience = ({ data, updateData }) => {
     setExperience({ company: "", role: "", years: "" });
   };
 
+  const deleteExperience = (experienceToDelete) => {
+    updateData(data.filter((exp) => exp !== experienceToDelete));
+  };
+
   return (
     <div
       style={{
-        backgroundColor: "#f0f8ff", 
+        backgroundColor: "#f0f8ff",
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -97,14 +101,31 @@ const Experience = ({ data, updateData }) => {
             key={index}
             style={{
               padding: "10px",
-              backgroundColor: "#e6f7ff", 
+              backgroundColor: "#e6f7ff",
               marginBottom: "5px",
               borderRadius: "4px",
               color: "#333",
               fontSize: "16px",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
             }}
           >
             {exp.company}, {exp.role} ({exp.years} years)
+            <button
+              onClick={() => deleteExperience(exp)}
+              style={{
+                backgroundColor: "#ff4d4d",
+                color: "#ffffff",
+                border: "none",
+                borderRadius: "4px",
+                padding: "5px 10px",
+                cursor: "pointer",
+                fontSize: "14px",
+              }}
+            >
+              Delete
+            </button>
           </li>
         ))}
       </ul>

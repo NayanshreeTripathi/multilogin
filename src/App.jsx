@@ -1,16 +1,37 @@
-import React, { useState } from "react";
-import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { BrowserRouter as Router, Route, Routes, data } from "react-router-dom";
 import MultiStepForm from "./components/Multistepform";
 import DisplayData from "./components/DispalyData";
 
 const App = () => {
   const [formData, setFormData] = useState(null);
+  const [loading, setLoading] = useState(true)
 
-  // Handle logout logic
+  const fetchData = async() => {
+    try {
+      const storedData = window.localStorage.getItem("personalDetails");
+      if(storedData){
+        setFormData(JSON.parse(storedData));
+      }else{
+        console.log("no data in local storage")
+      }
+    } catch (error) {
+      console.error(error);
+    }finally{
+      setLoading(false);
+    }
+  }
+
+  useEffect(() => {
+    fetchData();
+  }, [])
+  
+  
   const handleLogout = () => {
-    // Clear any session or local state (if needed)
-    setFormData(null);
+      setFormData(null);
   };
+
+  
 
   return (
     <Router>
@@ -18,7 +39,7 @@ const App = () => {
         <Route path="/" element={<MultiStepForm setFormData={setFormData} />} />
         <Route
           path="/display"
-          element={<DisplayData formData={formData} handleLogout={handleLogout} />}
+          element={<DisplayData formData={formData} handleLogout={handleLogout} loading={loading}/>}
         />     
       </Routes>
     </Router>

@@ -1,14 +1,30 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 
 const PersonalDetails = ({ data, updateData }) => {
-    useEffect(() => {
-        localStorage.setItem("personalDetails", JSON.stringify(data));
-      }, [data]);
-    
+  const [localData, setLocalData] = useState(() => {
+    // Initialize from localStorage or fallback to passed data
+    const storedData = window.localStorage.getItem("personalDetails");
+    return storedData ? JSON.parse(storedData) : data || {};
+  });
+
+  // Save data to localStorage whenever it changes
+  useEffect(() => {
+    window.localStorage.setItem("personalDetails", JSON.stringify(localData));
+    // Notify parent of changes
+    updateData(localData);
+  }, [localData]);
+
+  const handleChange = (key, value) => {
+    setLocalData((prevData) => ({
+      ...prevData,
+      [key]: value,
+    }));
+  };
+
   return (
     <div
       style={{
-        backgroundColor: "#f0f8ff", 
+        backgroundColor: "#f0f8ff",
         padding: "20px",
         borderRadius: "8px",
         boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
@@ -21,8 +37,8 @@ const PersonalDetails = ({ data, updateData }) => {
         <input
           type="text"
           placeholder="Full Name"
-          value={data.name || ""}
-          onChange={(e) => updateData({ ...data, name: e.target.value })}
+          value={localData.name || ""}
+          onChange={(e) => handleChange("name", e.target.value)}
           required
           style={{
             padding: "10px",
@@ -35,8 +51,8 @@ const PersonalDetails = ({ data, updateData }) => {
         <input
           type="email"
           placeholder="Email"
-          value={data.email || ""}
-          onChange={(e) => updateData({ ...data, email: e.target.value })}
+          value={localData.email || ""}
+          onChange={(e) => handleChange("email", e.target.value)}
           required
           style={{
             padding: "10px",
@@ -49,8 +65,8 @@ const PersonalDetails = ({ data, updateData }) => {
         <input
           type="tel"
           placeholder="Phone Number"
-          value={data.phone || ""}
-          onChange={(e) => updateData({ ...data, phone: e.target.value })}
+          value={localData.phone || ""}
+          onChange={(e) => handleChange("phone", e.target.value)}
           required
           style={{
             padding: "10px",
