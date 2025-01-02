@@ -32,7 +32,7 @@ const MultiStepForm = ({ setFormData }) => {
     education: [],
     experience: [],
   });
-  const [isUpdateMode, setIsUpdateMode] = useState(false); // New state to track update mode
+  const [isUpdateMode, setIsUpdateMode] = useState(false); 
   const navigate = useNavigate();
   const StepComponent = steps[currentStep];
 
@@ -41,7 +41,7 @@ const MultiStepForm = ({ setFormData }) => {
     setLocalFormData({ ...formData, [keys[currentStep]]: newData });
   };
 
-  // Check if a document exists for the provided email
+  
   const checkUpdateMode = async () => {
     try {
       const email = formData.personalDetails.email;
@@ -51,9 +51,9 @@ const MultiStepForm = ({ setFormData }) => {
         const querySnapshot = await getDocs(q);
 
         if (!querySnapshot.empty) {
-          setIsUpdateMode(true); // Document exists, enable update mode
+          setIsUpdateMode(true); 
         } else {
-          setIsUpdateMode(false); // No matching document, create a new one
+          setIsUpdateMode(false); 
         }
       }
     } catch (error) {
@@ -61,7 +61,7 @@ const MultiStepForm = ({ setFormData }) => {
     }
   };
 
-  // Handle form submission
+  
   const handleSubmit = async () => {
     try {
       const email = formData.personalDetails.email;
@@ -94,7 +94,7 @@ const MultiStepForm = ({ setFormData }) => {
   };
 
   useEffect(() => {
-    checkUpdateMode(); // Check update mode whenever the formData changes
+    checkUpdateMode(); 
   }, [formData.personalDetails.email]);
 
   return (
