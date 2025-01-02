@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { BrowserRouter as Router, Route, Routes, data } from "react-router-dom";
-import MultiStepForm from "./components/Multistepform";
+import MultiStepForm from "./components/MultiStepform";
 import DisplayData from "./components/DispalyData";
 
 const App = () => {
